@@ -5,10 +5,10 @@ webpackJsonp([6],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadPageModule", function() { return UploadPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StoreTabPageModule", function() { return StoreTabPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__upload__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_tab__ = __webpack_require__(167);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var UploadPageModule = /** @class */ (function () {
-    function UploadPageModule() {
+var StoreTabPageModule = /** @class */ (function () {
+    function StoreTabPageModule() {
     }
-    UploadPageModule = __decorate([
+    StoreTabPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__upload__["a" /* UploadPage */],
+                __WEBPACK_IMPORTED_MODULE_2__store_tab__["a" /* StoreTabPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__upload__["a" /* UploadPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__store_tab__["a" /* StoreTabPage */]),
             ],
         })
-    ], UploadPageModule);
-    return UploadPageModule;
+    ], StoreTabPageModule);
+    return StoreTabPageModule;
 }());
 
-//# sourceMappingURL=upload.module.js.map
+//# sourceMappingURL=store-tab.module.js.map
 
 /***/ })
 

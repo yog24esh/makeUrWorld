@@ -53,9 +53,8 @@
     "@ionic/app-scripts": "3.1.10",
     "typescript": "~2.6.2"
   },
-  "config":{
-    "ionic_copy":"./copy.config.js"
-
+  "config": {
+    "ionic_copy": "./copy.config.js"
   },
   "description": "An Ionic project",
   "cordova": {
