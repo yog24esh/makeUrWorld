@@ -12,7 +12,7 @@ export class ImageStoreService{
     }
 
     firstLoad(user:any,loged:any){
-        let url="http://coolhat//home/image/imgGal_load";
+        let url="http://app.makeurworld.com/home/image/imgGal_load";
 
         return this.con.postDataFetch(user,loged,url);
 
@@ -28,7 +28,7 @@ export class ImageStoreService{
     }
 
     bgProImg(user:any,loged:any){
-        let url="http://coolhat//home/image/imgGal_load";
+        let url="http://app.makeurworld.com/home/image/imgGal_load";
 
         return this.con.postDataFetch(user,loged,url);
 

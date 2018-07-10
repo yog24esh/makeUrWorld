@@ -65,7 +65,7 @@ export class ImagePickPage {
   choseImg(i)
   {
     
-
+    console.log(this.imageArray[i]);
   }
 
   

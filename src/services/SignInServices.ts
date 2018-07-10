@@ -23,7 +23,7 @@ export class SignInServices{
         };
         console.log(info);
         let info1=JSON.stringify(info);
-        let url="http://coolhat/log/login/login_in";
+        let url="http://app.makeurworld.com/log/login/login_in";
         return this.con.postData(info1,url);
 
     }
@@ -42,7 +42,7 @@ export class SignInServices{
         let info1=JSON.stringify(info);
         console.log(info1);
 
-        let url="http://coolhat/log/login/login_in_phone";
+        let url="http://app.makeurworld.com/log/login/login_in_phone";
        return this.con.postData(info1,url)
 
     }
@@ -52,7 +52,7 @@ export class SignInServices{
     otpCheck(data){
 
    
-        let url="http://coolhat/log/login/optVerificationCheck";
+        let url="http://app.makeurworld.com/log/login/optVerificationCheck";
        return this.con.postDataOtp(data,url)
 
     }

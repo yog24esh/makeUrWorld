@@ -19,7 +19,7 @@ export class TopHeaderServices{
 
     notificationLoad(user:any,loged:any){
 
-        let url="http://coolhat//home/main/notifi_load";
+        let url="http://app.makeurworld.com/home/main/notifi_load";
 
        return this.con.postDataFetch(user,loged,url);
 
@@ -27,7 +27,7 @@ export class TopHeaderServices{
     }
     messageLaod(user:any,loged:any){
 
-        let url="http://coolhat//home/main/nw_mess_l";
+        let url="http://app.makeurworld.com/home/main/nw_mess_l";
 
        return this.con.postDataFetch(user,loged,url);
 
@@ -35,7 +35,7 @@ export class TopHeaderServices{
     }
     requestLoad(user:any,loged:any){
 
-        let url="http://coolhat//home/main/meme_req_list";
+        let url="http://app.makeurworld.com/home/main/meme_req_list";
 
        return this.con.postDataFetch(user,loged,url);
 
@@ -44,7 +44,7 @@ export class TopHeaderServices{
 
     searchLoad(user:any,loged:any,info:any)
     {
-        let url="http://coolhat//home/main/search_op";
+        let url="http://app.makeurworld.com/home/main/search_op";
 
         return this.con.postDataAsked(user,loged,info,url);
 
