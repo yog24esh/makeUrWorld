@@ -49,6 +49,7 @@ import { ImagePickPage } from '../pages/image-pick/image-pick';
 import { BgProSetServices } from '../services/BgProSetServices';
 import { AngularCropperjsModule } from 'angular-cropperjs';
 import { ImCrpPage } from '../pages/im-crp/im-crp';
+//import { ImgCrpServices } from '../services/imgCrpServices';
 
 
 
@@ -138,7 +139,8 @@ import { ImCrpPage } from '../pages/im-crp/im-crp';
     SearchService,
     Camera,
     Crop,
-    BgProSetServices
+    BgProSetServices,
+    //ImgCrpServices
   
 
   ]

@@ -2,6 +2,7 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularCropperjsComponent } from 'angular-cropperjs';
 import { CoverPage } from '../cover/cover';
+//import { ImgCrpServices } from '../../services/imgCrpServices';
 
 
 @IonicPage()
@@ -13,29 +14,28 @@ export class ImCrpPage {
   @ViewChild('angularCropper') public angularCropper: AngularCropperjsComponent;
   cropperOptions: any;
   croppedImage = null;
-   
+  
   
   scaleValX = 1;
   scaleValY = 1;
  
   myImage:any;
+  aspRatio:number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.myImage = this.navParams.get('img');
+    this.aspRatio = this.navParams.get('aspRatio');
     this.cropperOptions = {
       dragMode: 'crop',
-      aspectRatio: 1,
+      aspectRatio: this.aspRatio,
       autoCrop: true,
       movable: true,
       zoomable: true,
       scalable: true,
       autoCropArea: 0.8,
     };
-    this.myImage =  this.navParams.get('img');
 }
-  
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ImCrpPage');
-  }
+     
   reset() {
     this.angularCropper.cropper.reset();
   }
@@ -72,7 +72,14 @@ export class ImCrpPage {
     this.croppedImage = croppedImgB64String;
     //code for submitting in coverPhoto
     this.navCtrl.push(CoverPage,{croppedImage:this.myImage});
+    console.log("back to page");
     //code for submitting in profilePhoto
   }
+
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ImCrpPage');
+  }
+  
 
 }

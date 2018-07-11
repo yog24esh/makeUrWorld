@@ -13,11 +13,12 @@
     <ion-col class='profileImgDisplay'>
     <div class='profileImgDisplayIn'>
       <div class='coverBgAr' id='vanilla-demo'>
-          <div class='coverBgArIn'>
-        <img src="assets/imgs/ter1.jpg">
-        </div>
+          <!-- <div class='coverBgArIn'> -->
+        <!-- <img src="assets/imgs/ter1.jpg"> -->
+        <img *ngIf="image" [src]="Coverimage" class="coverPrImg">
+        <!-- </div> -->
         <div class='changeBgIcon'>
-            <button clear ion-botton class='changeBgIconB' (click)="choseForBg()">
+            <button clear ion-botton class='changeBgIconB' (click)="choseForBg(2)">
               <ion-icon name='camera' class='bgChIcon'>
                
               </ion-icon>
@@ -34,7 +35,7 @@
               </div>
               <!-- src='assets/imgs/ter2.jpg' -->
               <div class='changePrIcon'>
-                  <button clear ion-botton class='changePrIconB' (click)="choseForPr()">
+                  <button clear ion-botton class='changePrIconB' (click)="choseForPr(1)">
                     <ion-icon name='camera' class='prChIcon'>
                      
                     </ion-icon>

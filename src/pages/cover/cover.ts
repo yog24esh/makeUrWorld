@@ -14,6 +14,7 @@ import { ImCrpPage } from '../im-crp/im-crp';
 export class CoverPage {
   myImage = null;
   image:string;
+  Coverimage:string;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private actionSheetController: ActionSheetController,
@@ -24,13 +25,15 @@ export class CoverPage {
     
   ) {
     this.image = this.navParams.get("croppedImage")==null?"assets/imgs/ter2.jpg":this.navParams.get("croppedImage");
+    this.Coverimage = this.navParams.get("croppedImage")==null?"assets/imgs/ter1.jpg":this.navParams.get("croppedImage");
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CoverPage');
   }
 
-  choseForBg(){
-    this.navCtrl.push(ImCrpPage);
+  choseForBg(asp:number){
+
     const actionsheet = this.actionSheetController.create({
       title:"Add Cover Page Photo",
       buttons: [
@@ -49,8 +52,11 @@ export class CoverPage {
             }
               this.camera.getPicture(options).then((imageData)=>{
                 this.myImage = 'data:image/jpeg;base64,' + imageData;
+                console.log("pushing  croppage")
                 this.navCtrl.push(ImCrpPage,{img:this.myImage});
+                console.log(asp);
                 //toast fior successful upload
+                console.log("pushed cropPage")
               },(err)=>{
                 //toast for unsses upload
               });
@@ -101,8 +107,8 @@ export class CoverPage {
   }
   
 
-  choseForPr(){
-    const profilePick=this.modelCtr.create(ImagePickPage);
+  choseForPr(asp:number){
+    const profilePick=this.modelCtr.create(ImagePickPage,{aspRatio:asp});
     profilePick.present();
   }
 
