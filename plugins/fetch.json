@@ -58,7 +58,7 @@
   "cordova-plugin-ionic-webview": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-ionic-webview@^1.1.19"
+      "id": "cordova-plugin-ionic-webview@^1.2.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -66,7 +66,7 @@
   "cordova-plugin-ionic-keyboard": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-ionic-keyboard@^2.0.5"
+      "id": "cordova-plugin-ionic-keyboard@^2.1.2"
     },
     "is_top_level": true,
     "variables": {}
@@ -82,7 +82,7 @@
   "cordova-plugin-crop": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-crop"
+      "id": "cordova-plugin-crop@^0.4.0"
     },
     "is_top_level": true,
     "variables": {}
