@@ -49,6 +49,7 @@ import { ImagePickPage } from '../pages/image-pick/image-pick';
 import { BgProSetServices } from '../services/BgProSetServices';
 import { AngularCropperjsModule } from 'angular-cropperjs';
 import { ImCrpPage } from '../pages/im-crp/im-crp';
+import { NativeAudio } from '../../node_modules/@ionic-native/native-audio';
 //import { ImgCrpServices } from '../services/imgCrpServices';
 
 
@@ -140,7 +141,8 @@ import { ImCrpPage } from '../pages/im-crp/im-crp';
     Camera,
     Crop,
     BgProSetServices,
-    //ImgCrpServices
+    //ImgCrpServices,
+    NativeAudio
   
 
   ]

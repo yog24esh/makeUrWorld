@@ -156,6 +156,51 @@ var SignInServices = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AddaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AddaPage = /** @class */ (function () {
+    function AddaPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    AddaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AddaPage');
+    };
+    AddaPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-adda',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\adda\adda.html"*/'<!--\n\n  Generated template for the AddaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>adda</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\adda\adda.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], AddaPage);
+    return AddaPage;
+}());
+
+//# sourceMappingURL=adda.js.map
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagePickPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
@@ -287,58 +332,18 @@ var ImagePickPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-image-pick',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\image-pick\image-pick.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <div class=\'modalHeader\'>\n\n        <div class=\'modalDis\'>\n\n            <button ion-button clear  (click)="dismissModel()">\n\n            <ion-icon name="close"></ion-icon>\n\n          </button>\n\n        </div>\n\n        <ion-title text-center>imagePick</ion-title>\n\n    </div>\n\n     \n\n   \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row >\n\n       \n\n        <ion-col col-md-3 col-4 col-sm-3   >\n\n            <div class="image-container" (click)="chooseForBg()">\n\n            Hello\n\n            </div>\n\n          </ion-col>\n\n\n\n      <ion-col col-md-3 col-4 col-sm-3  *ngFor="let image of imageArray let i = index" >\n\n          <div class="image-container" [style.background-image]="\'url(\' + image[\'image_url\'] + \')\'" (click)="choseImg(i)" >\n\n           \n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\image-pick\image-pick.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_CreditService__["a" /* CreditService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_CreditService__["a" /* CreditService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__["a" /* Camera */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__services_BgProSetServices__["a" /* BgProSetServices */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_BgProSetServices__["a" /* BgProSetServices */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2__services_CreditService__["a" /* CreditService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_3__services_BgProSetServices__["a" /* BgProSetServices */]])
     ], ImagePickPage);
     return ImagePickPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=image-pick.js.map
-
-/***/ }),
-
-/***/ 164:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the AddaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AddaPage = /** @class */ (function () {
-    function AddaPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    AddaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddaPage');
-    };
-    AddaPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-adda',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\adda\adda.html"*/'<!--\n\n  Generated template for the AddaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>adda</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\adda\adda.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], AddaPage);
-    return AddaPage;
-}());
-
-//# sourceMappingURL=adda.js.map
 
 /***/ }),
 
@@ -403,11 +408,104 @@ var ForgetPasswordPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageStorePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AlertServices__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_CreditService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_ImageStoreService__ = __webpack_require__(338);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ImageStorePage = /** @class */ (function () {
+    function ImageStorePage(navCtrl, alertCtrl, credit, imgStore) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.credit = credit;
+        this.imgStore = imgStore;
+        this.SwipedTabsIndicator = null;
+        this.tabs = [];
+        this.imageArray = [];
+        this.tabs = ["Photo", "Canvas"];
+    }
+    ImageStorePage.prototype.ionViewWillEnter = function () {
+        this.SwipedTabsSlider.slideTo(0, 100);
+    };
+    ImageStorePage.prototype.ionViewDidEnter = function () {
+        this.SwipedTabsIndicator = document.getElementById("indicator");
+    };
+    ImageStorePage.prototype.selectTab = function (index) {
+        this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (100 * index) + '%,0,0)';
+        this.SwipedTabsSlider.slideTo(index, 500);
+    };
+    ImageStorePage.prototype.updateIndicatorPosition = function () {
+        // this condition is to avoid passing to incorrect index
+        if (this.SwipedTabsSlider.length() > this.SwipedTabsSlider.getActiveIndex()) {
+            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (this.SwipedTabsSlider.getActiveIndex() * 100) + '%,0,0)';
+        }
+    };
+    ImageStorePage.prototype.animateIndicator = function ($event) {
+        if (this.SwipedTabsIndicator)
+            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (($event.progress * (this.SwipedTabsSlider.length() - 1)) * 100) + '%,0,0)';
+    };
+    ImageStorePage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ImageStorePage');
+        this.loadStor();
+    };
+    ImageStorePage.prototype.loadStor = function () {
+        var _this = this;
+        this.credit.check().then(function (data) {
+            // console.log(data);
+            _this.imgStore.firstLoad(data[0], data[1]).subscribe(function (data) {
+                if (data['status']) {
+                    for (var key in data[0]) {
+                        _this.imgStore.addToList(data[0][key]);
+                    }
+                    _this.imageArray = _this.imgStore.getList();
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('SwipedTabsSlider'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Slides */])
+    ], ImageStorePage.prototype, "SwipedTabsSlider", void 0);
+    ImageStorePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-image-store',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\image-store\image-store.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>imageStore</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content >\n\n\n\n    <ion-segment  class="SwipedTabs-tabs"  >\n\n      <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)"\n\n      [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\' >\n\n        {{tab}}\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n    <!-- here is our dynamic line  "indicator"-->\n\n    <div id=\'indicator\' class="SwipedTabs-indicatorSegment" [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n  \n\n    <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)"\n\n                (ionSlideWillChange)="updateIndicatorPosition()"\n\n                (ionSlideDidChange)="updateIndicatorPosition()"\n\n                (pan)="updateIndicatorPosition()"\n\n                [pager]="false"\n\n          >\n\n      <ion-slide>\n\n        <ion-row padding>\n\n          <div class="flexbin flexbin-margin">\n\n            <div *ngFor="let image of imageArray">\n\n                <img src="{{image[\'image_url\']}}" />\n\n            </div>\n\n           \n\n        </div>\n\n        </ion-row>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <h1>Canvas </h1>\n\n      </ion-slide>\n\n    </ion-slides>\n\n\n\n    \n\n\n\n\n\n</ion-content>'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\image-store\image-store.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__services_AlertServices__["a" /* AlertServices */],
+            __WEBPACK_IMPORTED_MODULE_3__services_CreditService__["a" /* CreditService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_ImageStoreService__["a" /* ImageStoreService */]])
+    ], ImageStorePage);
+    return ImageStorePage;
+}());
+
+//# sourceMappingURL=image-store.js.map
+
+/***/ }),
+
+/***/ 167:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignInPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forget_password_forget_password__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_up_sign_up__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sign_up_sign_up__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_ServerConnection__ = __webpack_require__(46);
@@ -566,99 +664,6 @@ var SignInPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 167:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageStorePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AlertServices__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_CreditService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_ImageStoreService__ = __webpack_require__(339);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var ImageStorePage = /** @class */ (function () {
-    function ImageStorePage(navCtrl, alertCtrl, credit, imgStore) {
-        this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
-        this.credit = credit;
-        this.imgStore = imgStore;
-        this.SwipedTabsIndicator = null;
-        this.tabs = [];
-        this.imageArray = [];
-        this.tabs = ["Photo", "Canvas"];
-    }
-    ImageStorePage.prototype.ionViewWillEnter = function () {
-        this.SwipedTabsSlider.slideTo(0, 100);
-    };
-    ImageStorePage.prototype.ionViewDidEnter = function () {
-        this.SwipedTabsIndicator = document.getElementById("indicator");
-    };
-    ImageStorePage.prototype.selectTab = function (index) {
-        this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (100 * index) + '%,0,0)';
-        this.SwipedTabsSlider.slideTo(index, 500);
-    };
-    ImageStorePage.prototype.updateIndicatorPosition = function () {
-        // this condition is to avoid passing to incorrect index
-        if (this.SwipedTabsSlider.length() > this.SwipedTabsSlider.getActiveIndex()) {
-            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (this.SwipedTabsSlider.getActiveIndex() * 100) + '%,0,0)';
-        }
-    };
-    ImageStorePage.prototype.animateIndicator = function ($event) {
-        if (this.SwipedTabsIndicator)
-            this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (($event.progress * (this.SwipedTabsSlider.length() - 1)) * 100) + '%,0,0)';
-    };
-    ImageStorePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ImageStorePage');
-        this.loadStor();
-    };
-    ImageStorePage.prototype.loadStor = function () {
-        var _this = this;
-        this.credit.check().then(function (data) {
-            // console.log(data);
-            _this.imgStore.firstLoad(data[0], data[1]).subscribe(function (data) {
-                if (data['status']) {
-                    for (var key in data[0]) {
-                        _this.imgStore.addToList(data[0][key]);
-                    }
-                    _this.imageArray = _this.imgStore.getList();
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('SwipedTabsSlider'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Slides */])
-    ], ImageStorePage.prototype, "SwipedTabsSlider", void 0);
-    ImageStorePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-image-store',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\image-store\image-store.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>imageStore</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content >\n\n\n\n    <ion-segment  class="SwipedTabs-tabs"  >\n\n      <ion-segment-button *ngFor=\'let tab of tabs ; let i = index \' value="IngoreMe" (click)="selectTab(i)"\n\n      [ngClass]=\'{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }\' >\n\n        {{tab}}\n\n      </ion-segment-button>\n\n    </ion-segment>\n\n  \n\n    <!-- here is our dynamic line  "indicator"-->\n\n    <div id=\'indicator\' class="SwipedTabs-indicatorSegment" [ngStyle]="{\'width.%\': (100/this.tabs.length)}"></div>\n\n  \n\n    <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)"\n\n                (ionSlideWillChange)="updateIndicatorPosition()"\n\n                (ionSlideDidChange)="updateIndicatorPosition()"\n\n                (pan)="updateIndicatorPosition()"\n\n                [pager]="false"\n\n          >\n\n      <ion-slide>\n\n        <ion-row padding>\n\n          <div class="flexbin flexbin-margin">\n\n            <div *ngFor="let image of imageArray">\n\n                <img src="{{image[\'image_url\']}}" />\n\n            </div>\n\n           \n\n        </div>\n\n        </ion-row>\n\n      </ion-slide>\n\n      <ion-slide>\n\n        <h1>Canvas </h1>\n\n      </ion-slide>\n\n    </ion-slides>\n\n\n\n    \n\n\n\n\n\n</ion-content>'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\image-store\image-store.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__services_AlertServices__["a" /* AlertServices */],
-            __WEBPACK_IMPORTED_MODULE_3__services_CreditService__["a" /* CreditService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_ImageStoreService__["a" /* ImageStoreService */]])
-    ], ImageStorePage);
-    return ImageStorePage;
-}());
-
-//# sourceMappingURL=image-store.js.map
-
-/***/ }),
-
 /***/ 168:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -668,7 +673,7 @@ var ImageStorePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_tab_store_tab__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viral_tab_viral_tab__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__adda_adda__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__adda_adda__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__musicplayer_musicplayer__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cover_cover__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__search_search__ = __webpack_require__(177);
@@ -749,7 +754,7 @@ var MainTabPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StoreTabPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__image_store_image_store__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__image_store_image_store__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__music_store_music_store__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__video_store_video_store__ = __webpack_require__(171);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1110,6 +1115,7 @@ var ViralVideoPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MusicplayerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__ = __webpack_require__(740);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1121,27 +1127,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the MusicplayerPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 var MusicplayerPage = /** @class */ (function () {
-    function MusicplayerPage(navCtrl, navParams) {
+    function MusicplayerPage(navCtrl, navParams, nativeAudio) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.nativeAudio = nativeAudio;
     }
     MusicplayerPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad MusicplayerPage');
     };
+    MusicplayerPage.prototype.songPlay = function () {
+        this.nativeAudio.preloadComplex('uniqueId2', 'https://r5---sn-p5qlsndd.googlevideo.com/videoplayback?clen=4472652&sparams=clen,dur,ei,expire,gir,id,ip,ipbits,ipbypass,itag,keepalive,lmt,mime,mip,mm,mn,ms,mv,pl,requiressl,source&c=WEB&ipbits=0&ei=c8NGW_jPKo_AkAOhoKWADA&pl=27&ip=104.156.245.194&keepalive=yes&id=o-ALtLIALoVg1mX_g3kwuJbZ5DY-sE910ZphYdzCHuKTEm&mime=audio%2Fmp4&itag=140&expire=1531385811&fvip=5&lmt=1523417018167625&dur=281.565&source=youtube&requiressl=yes&key=cms1&gir=yes&fexp=23709359,23745105&signature=64C3460947AF62FC1DF9E7DAAA22D44BA7E7E775.52FD58D9C56B18E973F7413A63CF649E79B6834D&ratebypass=yes&title=Luis+Fonsi+-+Despacito+ft.+Daddy+Yankee&title=Luis+Fonsi+-+Despacito+ft.+Daddy+Yankee&mip=207.244.77.49&redirect_counter=1&rm=sn-p5qe7e7e&req_id=822d28ae1318a3ee&cms_redirect=yes&ipbypass=yes&mm=31&mn=sn-p5qlsndd&ms=au&mt=1531378737&mv=m', 1, 1, 0).then(function () {
+            console.log("audio played");
+        }, function (err) {
+            console.log(err);
+        });
+        this.nativeAudio.play('uniqueId2', function () { return console.log('uniqueId1 is done playing'); });
+    };
     MusicplayerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-musicplayer',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\musicplayer\musicplayer.html"*/'<!--\n\n  Generated template for the MusicplayerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>musicplayer</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\musicplayer\musicplayer.html"*/,
+            selector: 'page-musicplayer',template:/*ion-inline-start:"E:\muwVer1.2\makeurworld\src\pages\musicplayer\musicplayer.html"*/'<!--\n\n  Generated template for the MusicplayerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>musicplayer</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <button (click)=songPlay()>play</button>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\muwVer1.2\makeurworld\src\pages\musicplayer\musicplayer.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_audio__["a" /* NativeAudio */]) === "function" && _c || Object])
     ], MusicplayerPage);
     return MusicplayerPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=musicplayer.js.map
@@ -1507,11 +1518,11 @@ webpackEmptyAsyncContext.id = 192;
 
 var map = {
 	"../pages/adda/adda.module": [
-		719,
+		718,
 		21
 	],
 	"../pages/cover/cover.module": [
-		718,
+		719,
 		20
 	],
 	"../pages/forget-password/forget-password.module": [
@@ -1527,11 +1538,11 @@ var map = {
 		17
 	],
 	"../pages/image-store/image-store.module": [
-		724,
+		723,
 		16
 	],
 	"../pages/landing/landing.module": [
-		723,
+		724,
 		15
 	],
 	"../pages/main-tab/main-tab.module": [
@@ -1547,11 +1558,11 @@ var map = {
 		12
 	],
 	"../pages/musicplayer/musicplayer.module": [
-		729,
+		728,
 		11
 	],
 	"../pages/notification/notification.module": [
-		728,
+		729,
 		10
 	],
 	"../pages/request/request.module": [
@@ -1744,6 +1755,54 @@ var AlertServices = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageStoreService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ServerConnection__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ImageStoreService = /** @class */ (function () {
+    function ImageStoreService(con) {
+        this.con = con;
+        this.imgArr = [];
+    }
+    ImageStoreService.prototype.firstLoad = function (user, loged) {
+        var url = "http://app.makeurworld.com/home/image/imgGal_load";
+        return this.con.postDataFetch(user, loged, url);
+    };
+    ImageStoreService.prototype.addToList = function (data) {
+        this.imgArr.push(data);
+    };
+    ImageStoreService.prototype.getList = function () {
+        return this.imgArr;
+    };
+    ImageStoreService.prototype.bgProImg = function (user, loged) {
+        var url = "http://app.makeurworld.com/home/image/imgGal_load";
+        return this.con.postDataFetch(user, loged, url);
+    };
+    ImageStoreService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ServerConnection__["a" /* ConnectionServices */]])
+    ], ImageStoreService);
+    return ImageStoreService;
+}());
+
+//# sourceMappingURL=ImageStoreService.js.map
+
+/***/ }),
+
+/***/ 339:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignUpPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
@@ -1891,54 +1950,6 @@ var SignUpPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 339:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImageStoreService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ServerConnection__ = __webpack_require__(46);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ImageStoreService = /** @class */ (function () {
-    function ImageStoreService(con) {
-        this.con = con;
-        this.imgArr = [];
-    }
-    ImageStoreService.prototype.firstLoad = function (user, loged) {
-        var url = "http://app.makeurworld.com/home/image/imgGal_load";
-        return this.con.postDataFetch(user, loged, url);
-    };
-    ImageStoreService.prototype.addToList = function (data) {
-        this.imgArr.push(data);
-    };
-    ImageStoreService.prototype.getList = function () {
-        return this.imgArr;
-    };
-    ImageStoreService.prototype.bgProImg = function (user, loged) {
-        var url = "http://app.makeurworld.com/home/image/imgGal_load";
-        return this.con.postDataFetch(user, loged, url);
-    };
-    ImageStoreService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ServerConnection__["a" /* ConnectionServices */]])
-    ], ImageStoreService);
-    return ImageStoreService;
-}());
-
-//# sourceMappingURL=ImageStoreService.js.map
-
-/***/ }),
-
 /***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2058,10 +2069,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_crop__ = __webpack_require__(714);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_main_tab_main_tab__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_store_tab_store_tab__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_adda_adda__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_adda_adda__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_musicplayer_musicplayer__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_viral_tab_viral_tab__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_image_store_image_store__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_image_store_image_store__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_video_store_video_store__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_viral_image_viral_image__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_viral_music_viral_music__ = __webpack_require__(174);
@@ -2071,9 +2082,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_music_store_music_store__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(716);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_landing_landing__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_sign_in_sign_in__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_sign_in_sign_in__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_forget_password_forget_password__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_sign_up_sign_up__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_sign_up_sign_up__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_SignInServices__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_SignUpServices__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__angular_http__ = __webpack_require__(241);
@@ -2094,18 +2105,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__services_MessageService__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_SearchServices__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_upload_upload__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_ImageStoreService__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_image_pick_image_pick__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_ImageStoreService__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_image_pick_image_pick__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__services_BgProSetServices__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48_angular_cropperjs__ = __webpack_require__(337);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48_angular_cropperjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_48_angular_cropperjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_im_crp_im_crp__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__node_modules_ionic_native_native_audio__ = __webpack_require__(740);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2196,18 +2209,18 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_27__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/cover/cover.module#CoverPageModule', name: 'CoverPage', segment: 'cover', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/adda/adda.module#AddaPageModule', name: 'AddaPage', segment: 'adda', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cover/cover.module#CoverPageModule', name: 'CoverPage', segment: 'cover', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forget-password/forget-password.module#ForgetPasswordPageModule', name: 'ForgetPasswordPage', segment: 'forget-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/im-crp/im-crp.module#ImCrpPageModule', name: 'ImCrpPage', segment: 'im-crp', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/image-pick/image-pick.module#ImagePickPageModule', name: 'ImagePickPage', segment: 'image-pick', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/landing/landing.module#LandingPageModule', name: 'LandingPage', segment: 'landing', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/image-store/image-store.module#ImageStorePageModule', name: 'ImageStorePage', segment: 'image-store', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/landing/landing.module#LandingPageModule', name: 'LandingPage', segment: 'landing', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/main-tab/main-tab.module#MainTabPageModule', name: 'MainTabPage', segment: 'main-tab', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/message/message.module#MessagePageModule', name: 'MessagePage', segment: 'message', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/music-store/music-store.module#MusicStorePageModule', name: 'MusicStorePage', segment: 'music-store', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/notification/notification.module#NotificationPageModule', name: 'NotificationPage', segment: 'notification', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/musicplayer/musicplayer.module#MusicplayerPageModule', name: 'MusicplayerPage', segment: 'musicplayer', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/notification/notification.module#NotificationPageModule', name: 'NotificationPage', segment: 'notification', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/request/request.module#RequestPageModule', name: 'RequestPage', segment: 'request', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/search/search.module#SearchPageModule', name: 'SearchPage', segment: 'search', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sign-in/sign-in.module#SignInPageModule', name: 'SignInPage', segment: 'sign-in', priority: 'low', defaultHistory: [] },
@@ -2270,6 +2283,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */],
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_crop__["a" /* Crop */],
                 __WEBPACK_IMPORTED_MODULE_47__services_BgProSetServices__["a" /* BgProSetServices */],
+                //ImgCrpServices,
+                __WEBPACK_IMPORTED_MODULE_50__node_modules_ionic_native_native_audio__["a" /* NativeAudio */]
             ]
         })
     ], AppModule);
@@ -2446,7 +2461,7 @@ var TopHeaderServices = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LandingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign_in_sign_in__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign_in_sign_in__ = __webpack_require__(167);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2741,7 +2756,7 @@ var SignUpServices = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_AlertServices__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_pick_image_pick__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_pick_image_pick__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__im_crp_im_crp__ = __webpack_require__(94);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
