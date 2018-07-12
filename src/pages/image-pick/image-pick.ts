@@ -46,6 +46,7 @@ export class ImagePickPage {
               this.camera.getPicture(options).then((imageData)=>{
                 this.myImage = 'data:image/jpeg;base64,' + imageData;
                 this.navCtrl.push(ImCrpPage,{img:this.myImage,aspRatio:this.aspRatio});
+                // this.navCtrl.push(ImCrpPage,{img:this.myImage,aspRatio:1}); rm aspRatio
                 //toast fior successful upload
               },(err)=>{
                 //toast for unsses upload
@@ -67,6 +68,8 @@ export class ImagePickPage {
             this.camera.getPicture(options).then((imageData) => {
               this.myImage = 'data:image/jpeg;base64,' + imageData;
               this.navCtrl.push(ImCrpPage,{img:this.myImage,aspRatio:this.aspRatio});
+             // this.navCtrl.push(ImCrpPage,{img:this.myImage,aspRatio:1});
+              
               //toast for successfull upload
             },(err)=>{
               //toast of unsuccessfull upload
@@ -140,8 +143,9 @@ export class ImagePickPage {
 
   choseImg(i)
   {
+    console.log(this.imageArray[i].image_url);
+    this.navCtrl.push(ImCrpPage,{img:this.imageArray[i].image_url,aspRatio:1})
     
-    console.log(this.imageArray[i]);
   }
 
   
