@@ -47,6 +47,9 @@ import { UploadPage } from '../pages/upload/upload';
 import { ImageStoreService } from '../services/ImageStoreService';
 import { ImagePickPage } from '../pages/image-pick/image-pick';
 import { BgProSetServices } from '../services/BgProSetServices';
+import { AngularCropperjsModule } from 'angular-cropperjs';
+import { ImCrpPage } from '../pages/im-crp/im-crp';
+//import { ImgCrpServices } from '../services/imgCrpServices';
 
 
 
@@ -76,7 +79,8 @@ import { BgProSetServices } from '../services/BgProSetServices';
     RequestPage,
     SearchPage,
     UploadPage,
-    ImagePickPage
+    ImagePickPage,
+    ImCrpPage
    
   ],
   imports: [
@@ -84,7 +88,8 @@ import { BgProSetServices } from '../services/BgProSetServices';
     HttpClientModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularCropperjsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -111,8 +116,8 @@ import { BgProSetServices } from '../services/BgProSetServices';
     RequestPage,
     SearchPage,
     UploadPage,
-    ImagePickPage
-    
+    ImagePickPage,
+    ImCrpPage
 
    
   ],
@@ -134,7 +139,8 @@ import { BgProSetServices } from '../services/BgProSetServices';
     SearchService,
     Camera,
     Crop,
-    BgProSetServices
+    BgProSetServices,
+    //ImgCrpServices
   
 
   ]

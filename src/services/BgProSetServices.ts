@@ -21,7 +21,7 @@ export class BgProSetServices{
     }
 
     bgProImg(user:any,loged:any){
-        let url="http://coolhat//home/image/imgGal_load_bg";
+        let url="http://app.makeurworld.com/home/image/imgGal_load_bg";
 
         return this.con.postDataFetch(user,loged,url);
 
