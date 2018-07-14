@@ -186,6 +186,87 @@ var mytests = function() {
           });
         }, MYTIMEOUT);
 
+        it(suiteName + 'US-ASCII String concatenation test with multiple argument values', function(done) {
+          var db = openDatabase('ASCII-String-concat-test.db');
+
+          db.transaction(function(tx) {
+
+            tx.executeSql('SELECT (? || ?) AS myResult', ['First', '-second'], function(ignored, rs) {
+              expect(rs).toBeDefined();
+              expect(rs.rows).toBeDefined();
+              expect(rs.rows.length).toBe(1);
+
+              var resultRow = rs.rows.item(0);
+              expect(resultRow).toBeDefined();
+              expect(resultRow.myResult).toBeDefined();
+              expect(resultRow.myResult).toBe('First-second');
+
+              // Close (plugin only) & finish:
+              (isWebSql) ? done() : db.close(done, done);
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('--');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
+        it(suiteName + 'String concatenation test with numbered parameters', function(done) {
+          var db = openDatabase('string-concat-with-numbered-parameters-test.db');
+
+          db.transaction(function(tx) {
+
+            tx.executeSql('SELECT (?1 || ?2) AS myResult', ['First', '-second'], function(ignored, rs) {
+              expect(rs).toBeDefined();
+              expect(rs.rows).toBeDefined();
+              expect(rs.rows.length).toBe(1);
+
+              var resultRow = rs.rows.item(0);
+              expect(resultRow).toBeDefined();
+              expect(resultRow.myResult).toBeDefined();
+              expect(resultRow.myResult).toBe('First-second');
+
+              // Close (plugin only) & finish:
+              (isWebSql) ? done() : db.close(done, done);
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('--');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
+        it(suiteName + 'String concatenation test with reversed numbered parameters', function(done) {
+          var db = openDatabase('string-concat-with-reversed-numbered-parameters-test.db');
+
+          db.transaction(function(tx) {
+
+            tx.executeSql('SELECT (?2 || ?1) AS myResult', ['Alice', 'Betty'], function(ignored, rs) {
+              expect(rs).toBeDefined();
+              expect(rs.rows).toBeDefined();
+              expect(rs.rows.length).toBe(1);
+
+              var resultRow = rs.rows.item(0);
+              expect(resultRow).toBeDefined();
+              expect(resultRow.myResult).toBeDefined();
+              expect(resultRow.myResult).toBe('BettyAlice');
+
+              // Close (plugin only) & finish:
+              (isWebSql) ? done() : db.close(done, done);
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('--');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
         it(suiteName + 'tx.executeSql(new String(sql))', function(done) {
           var db = openDatabase('tx-executeSql-new-String-test.db');
 
@@ -376,6 +457,8 @@ var mytests = function() {
         }, MYTIMEOUT);
 
         it(suiteName + 'U+0000 string parameter manipulation test [TBD TRUNCATION ISSUE REPRODUCED on (WebKit) Web SQL & plugin on multiple platforms]', function(done) {
+          if (isWebSql && /Android 6/.test(navigator.userAgent)) pending('SKIP on (WebKit) Web SQL on Android 6'); // XXX TBD
+
           var db = openDatabase('U-0000-string-parameter-upper-test');
 
           db.transaction(function(tx) {
@@ -392,7 +475,8 @@ var mytests = function() {
                   (isWebSql && !isAndroid) ||
                   (!isWebSql && isWindows) ||
                   (!isWebSql && !isWindows && isAndroid && isImpl2 &&
-                    !(/Android 4/.test(navigator.userAgent))))
+                    !(/Android 4/.test(navigator.userAgent)) &&
+                    !(/Android 8/.test(navigator.userAgent))))
                 expect(rs.rows.item(0).uppertext).toBe('A');
               else
                 expect(rs.rows.item(0).uppertext).toBe('A\0CD');
@@ -1062,13 +1146,6 @@ var mytests = function() {
           });
         }, MYTIMEOUT);
 
-        // ENCODING BUG REPRODUCED for emojis and other
-        // 4-byte UTF-8 characters in SELECT HEX value tests
-        // on default Android database access implementation
-        // (Android-sqlite-connector with Android-sqlite-ext-native-driver,
-        // using NDK) on Android pre-6.0
-        // ref: litehelpers/Cordova-sqlite-storage#564
-
         it(suiteName + 'string HEX value test with UTF-8 3-byte Samaritan character Bit (U+0801) [default sqlite HEX encoding: UTF-6le on Windows & Android 4.1-4.3 (WebKit) Web SQL, UTF-8 otherwise]', function(done) {
           var db = openDatabase('UTF8-0801-hex-value-test.db');
 
@@ -1156,6 +1233,11 @@ var mytests = function() {
         }, MYTIMEOUT);
 
         it(suiteName + 'string HEX value test with UTF-8 4-byte Gothic bairkan 𐌱 (U+10331) [XXX ENCODING BUG REPRODUCED on default Android SQLite3 NDK build (using Android-sqlite-connector with Android-sqlite-ext-native-driver) on Android 4.x/5.x; default sqlite HEX encoding: UTF-6le on Windows & Android 4.1-4.3 (WebKit) Web SQL, UTF-8 otherwise]', function(done) {
+          // ENCODING BUG REPRODUCED for 4-byte UTF-8 characters
+          // on default Android database access implementation
+          // (Android-sqlite-connector with Android-sqlite-ext-native-driver,
+          // using NDK) on Android pre-6.0
+          // ref: litehelpers/Cordova-sqlite-storage#564
           var db = openDatabase('UTF8-2050-hex-value-test.db');
 
           db.transaction(function(tx) {
@@ -1278,6 +1360,11 @@ var mytests = function() {
         }, MYTIMEOUT);
 
         it(suiteName + 'emoji HEX test: SELECT HEX("@\\uD83D\\uDE03!") [\\u1F603 SMILING FACE (MOUTH OPEN)] [XXX TBD HEX encoding BUG REPRODUCED default Android SQLite3 NDK build (using Android-sqlite-connector with Android-sqlite-ext-native-driver) on Android 4.x & 5.x; default sqlite HEX encoding: UTF-6le on Windows & Android 4.1-4.3 (WebKit) Web SQL, UTF-8 otherwise]', function(done) {
+          // ENCODING BUG REPRODUCED for emojis and other 4-byte UTF-8
+          // characters on default Android database access implementation
+          // (Android-sqlite-connector with Android-sqlite-ext-native-driver,
+          // using NDK) on Android pre-6.0
+          // ref: litehelpers/Cordova-sqlite-storage#564
           var db = openDatabase('emoji-select-hex-value-test.db');
           expect(db).toBeDefined();
 
@@ -1609,9 +1696,7 @@ var mytests = function() {
 
       });
 
-      describe(suiteName + 'Additional US-ASCII string binding/manipulation tests', function() {
-
-        // TBD CHECK HEX value results
+      describe(suiteName + 'Extra US-ASCII string binding/manipulation tests', function() {
 
         it(suiteName + 'INLINE Double-quote string manipulation test', function(done) {
           var db = openDatabase('INLINE-Double-quote-string-test.db');
@@ -1646,52 +1731,6 @@ var mytests = function() {
               expect(rs1.rows).toBeDefined();
               expect(rs1.rows.length).toBe(1);
               expect(rs1.rows.item(0).upper_result).toBe('"STRING" TEST');
-
-              // Close (plugin only) & finish:
-              (isWebSql) ? done() : db.close(done, done);
-            });
-          }, function(error) {
-            // NOT EXPECTED:
-            expect(false).toBe(true);
-            expect(error.message).toBe('--');
-            // Close (plugin only) & finish:
-            (isWebSql) ? done() : db.close(done, done);
-          });
-        }, MYTIMEOUT);
-
-        it(suiteName + 'INLINE Backslash string test', function(done) {
-          var db = openDatabase('INLINE-Backslash-string-test.db');
-
-          db.transaction(function(tx) {
-
-            tx.executeSql("SELECT UPPER('Test \\') AS upper_result", [], function(ignored, rs) {
-              expect(rs).toBeDefined();
-              expect(rs.rows).toBeDefined();
-              expect(rs.rows.length).toBe(1);
-              expect(rs.rows.item(0).upper_result).toBe('TEST \\');
-
-              // Close (plugin only) & finish:
-              (isWebSql) ? done() : db.close(done, done);
-            });
-          }, function(error) {
-            // NOT EXPECTED:
-            expect(false).toBe(true);
-            expect(error.message).toBe('--');
-            // Close (plugin only) & finish:
-            (isWebSql) ? done() : db.close(done, done);
-          });
-        }, MYTIMEOUT);
-
-        it(suiteName + 'Backslash string binding test', function(done) {
-          var db = openDatabase('Backslash-string-binding-test.db');
-
-          db.transaction(function(tx) {
-
-            tx.executeSql('SELECT UPPER(?) AS upper_result', ['Test \\'], function(tx_ignored, rs1) {
-              expect(rs1).toBeDefined();
-              expect(rs1.rows).toBeDefined();
-              expect(rs1.rows.length).toBe(1);
-              expect(rs1.rows.item(0).upper_result).toBe('TEST \\');
 
               // Close (plugin only) & finish:
               (isWebSql) ? done() : db.close(done, done);

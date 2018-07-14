@@ -26,9 +26,9 @@
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-file@>=2.0.0"
+      "id": "cordova-plugin-file@^6.0.1"
     },
-    "is_top_level": false,
+    "is_top_level": true,
     "variables": {}
   },
   "cordova-plugin-whitelist": {
@@ -90,7 +90,23 @@
   "cordova-plugin-nativeaudio": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-nativeaudio"
+      "id": "cordova-plugin-nativeaudio@^3.0.9"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-streaming-media": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-streaming-media@^2.1.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-media": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-media@5.0.2"
     },
     "is_top_level": true,
     "variables": {}

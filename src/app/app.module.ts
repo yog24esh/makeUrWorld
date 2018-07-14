@@ -51,8 +51,9 @@ import { AngularCropperjsModule } from 'angular-cropperjs';
 import { ImCrpPage } from '../pages/im-crp/im-crp';
 import { NativeAudio } from '../../node_modules/@ionic-native/native-audio';
 //import { ImgCrpServices } from '../services/imgCrpServices';
-
-
+import { StreamingMedia } from '@ionic-native/streaming-media';
+import { File } from '@ionic-native/file';
+import { Media } from '@ionic-native/media';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,10 @@ import { NativeAudio } from '../../node_modules/@ionic-native/native-audio';
     Crop,
     BgProSetServices,
     //ImgCrpServices,
-    NativeAudio
+    NativeAudio,
+    StreamingMedia,
+    Media,
+    File
   
 
   ]

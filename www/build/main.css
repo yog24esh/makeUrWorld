@@ -26271,6 +26271,156 @@ page-music-store .segment-md .segment-button {
   text-transform: capitalize;
 }
 
+page-musicplayer body {
+  margin: 0px;
+  padding: 0px;
+}
+
+page-musicplayer #bg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+page-musicplayer .scroll-content {
+  padding: 0px !important;
+}
+
+page-musicplayer #bg img {
+  height: 120vh;
+  width: 105%;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+page-musicplayer #blackLayer {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 99;
+}
+
+page-musicplayer #main {
+  width: 80%;
+  background-color: #fff;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+page-musicplayer #image img {
+  height: 180px;
+  width: 100%;
+  margin-top: -5px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+page-musicplayer #player {
+  padding: 25px;
+  color: #333;
+}
+
+page-musicplayer #songTitle {
+  width: 300px;
+  text-align: center;
+  background-color: aqua;
+  font-family: monospace;
+  font-size: 18px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+page-musicplayer #buttons {
+  height: 50px;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+  top: 10%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+page-musicplayer #play, page-musicplayer #next, page-musicplayer #pre {
+  width: 50px;
+  height: 50px;
+  border: 0;
+  background-color: royalblue;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+page-musicplayer #next {
+  width: 30px;
+  height: 30px;
+  left: 70%;
+}
+
+page-musicplayer #pre {
+  width: 30px;
+  height: 30px;
+  left: 30%;
+}
+
+page-musicplayer #play img, page-musicplayer #next img, page-musicplayer #pre img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+page-musicplayer #seek-bar {
+  width: 202px;
+  height: 5px;
+  background-color: gray;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 50px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+page-musicplayer #fill {
+  height: 5px;
+  background-color: royalblue;
+  border-radius: 20px;
+}
+
+page-musicplayer #handle {
+  width: 8px;
+  height: 8px;
+  background-color: royalblue;
+  border-radius: 50%;
+  margin-left: -5px;
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+
 page-otp .reomve-signIn {
   letter-spacing: 1px;
   text-transform: none;

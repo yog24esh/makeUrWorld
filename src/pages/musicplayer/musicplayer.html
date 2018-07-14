@@ -14,5 +14,33 @@
 
 
 <ion-content padding>
-  <button (click)=songPlay()>play</button>
-</ion-content>
+    <body>
+        <div id="bg">
+            <div id="blackLayer"></div>
+            <img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Poster1.jpg?raw=true"/>
+        </div>
+       
+        <div id="main">
+            <div id="image">
+                <img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Poster1.jpg?raw=true"/>
+            </div>
+            <div id="player">
+                <div id="songTitle">Demo</div>
+                <div id="buttons">
+                    <button id="pre" (click)="pre()"><img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Pre.png?raw=true" height="90%" width="90%"/></button>
+                    <button id="play" (click)="playSong()" *ngIf="!play"><img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Play.png?raw=true"/></button>
+                    <button id="play" (click)="pauseSong()" *ngIf="play"><img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Pause.png?raw=true"/></button>
+                    <button id="next" (click)="next()"><img src="https://github.com/DaftCreation/Custom-Audio-Player/blob/master/Next.png?raw=true" height="90%" width="90%"/></button>
+                </div>
+                
+                <div id="seek-bar">
+                    <div id="fill"></div>
+                    <div id="handle"></div>
+                </div>
+            </div>
+          </div>
+    </body>
+
+    
+  <!-- <button (click)="songPlay()">play</button> -->
+  </ion-content>

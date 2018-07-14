@@ -773,6 +773,119 @@ var mytests = function() {
           });
         }, MYTIMEOUT);
 
+        it(suiteName + "'012012012' string INSERT value bindings", function(done) {
+          // Verified working as expected
+          // ref: litehelpers/Cordova-sqlite-storage#791
+          var db = openDatabase('012012012-string-INSERT-value-bindings-test.db');
+
+          var myValue = '012012012';
+          var myValueAsWholeNumber = 12012012;
+
+          db.transaction(function(tx) {
+            tx.executeSql('DROP TABLE IF EXISTS tt');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS tt (data1, data2 TEXT, data3 NUMERIC, data4 INTEGER, data5 REAL)', null, function(ignored1, ignored2) {
+              tx.executeSql('INSERT INTO tt VALUES (?,?,?,?,?)',
+                  [myValue, myValue, myValue, myValue, myValue], function(ignored, rs1) {
+                expect(rs1).toBeDefined();
+                expect(rs1.rowsAffected).toBe(1);
+                expect(rs1.insertId).toBe(1);
+
+                tx.executeSql('SELECT * FROM tt', [], function(ignored, rs2) {
+                  expect(rs2).toBeDefined();
+                  expect(rs2.rows).toBeDefined();
+                  expect(rs2.rows.length).toBe(1);
+
+                  var resultRow2 = rs2.rows.item(0);
+                  expect(resultRow2.data1).toBe(myValue);
+                  expect(resultRow2.data2).toBe(myValue);
+                  expect(resultRow2.data3).toBe(myValueAsWholeNumber);
+                  expect(resultRow2.data4).toBe(myValueAsWholeNumber);
+                  expect(resultRow2.data5).toBe(myValueAsWholeNumber);
+
+                  tx.executeSql('SELECT TYPEOF(data1) AS t1, TYPEOF(data2) AS t2, TYPEOF(data3) AS t3, TYPEOF(data4) AS t4, TYPEOF(data5) AS t5 FROM tt', [], function(ignored, rs3) {
+                    expect(rs3).toBeDefined();
+                    expect(rs3.rows).toBeDefined();
+                    expect(rs3.rows.length).toBe(1);
+
+                    var resultRow3 = rs3.rows.item(0);
+                    expect(resultRow3.t1).toBe('text');
+                    expect(resultRow3.t2).toBe('text');
+                    expect(resultRow3.t3).toBe('integer');
+                    expect(resultRow3.t4).toBe('integer');
+                    expect(resultRow3.t5).toBe('real');
+
+                    // Close (plugin only) & finish:
+                    (isWebSql) ? done() : db.close(done, done);
+                  });
+
+                });
+              });
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('---');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
+        it(suiteName + "'012012.012' string INSERT value bindings", function(done) {
+          // Additional test ref: litehelpers/Cordova-sqlite-storage#791
+          var db = openDatabase('012012.012-string-INSERT-value-bindings-test.db');
+
+          var myValue = '012012.012';
+          var myValueAsRealNumber = 12012.012;
+
+          db.transaction(function(tx) {
+            tx.executeSql('DROP TABLE IF EXISTS tt');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS tt (data1, data2 TEXT, data3 NUMERIC, data4 INTEGER, data5 REAL)', null, function(ignored1, ignored2) {
+              tx.executeSql('INSERT INTO tt VALUES (?,?,?,?,?)',
+                  [myValue, myValue, myValue, myValue, myValue], function(ignored, rs1) {
+                expect(rs1).toBeDefined();
+                expect(rs1.rowsAffected).toBe(1);
+                expect(rs1.insertId).toBe(1);
+
+                tx.executeSql('SELECT * FROM tt', [], function(ignored, rs2) {
+                  expect(rs2).toBeDefined();
+                  expect(rs2.rows).toBeDefined();
+                  expect(rs2.rows.length).toBe(1);
+
+                  var resultRow2 = rs2.rows.item(0);
+                  expect(resultRow2.data1).toBe(myValue);
+                  expect(resultRow2.data2).toBe(myValue);
+                  expect(resultRow2.data3).toBe(myValueAsRealNumber);
+                  expect(resultRow2.data4).toBe(myValueAsRealNumber);
+                  expect(resultRow2.data5).toBe(myValueAsRealNumber);
+
+                  tx.executeSql('SELECT TYPEOF(data1) AS t1, TYPEOF(data2) AS t2, TYPEOF(data3) AS t3, TYPEOF(data4) AS t4, TYPEOF(data5) AS t5 FROM tt', [], function(ignored, rs3) {
+                    expect(rs3).toBeDefined();
+                    expect(rs3.rows).toBeDefined();
+                    expect(rs3.rows.length).toBe(1);
+
+                    var resultRow3 = rs3.rows.item(0);
+                    expect(resultRow3.t1).toBe('text');
+                    expect(resultRow3.t2).toBe('text');
+                    expect(resultRow3.t3).toBe('real');
+                    expect(resultRow3.t4).toBe('real');
+                    expect(resultRow3.t5).toBe('real');
+
+                    // Close (plugin only) & finish:
+                    (isWebSql) ? done() : db.close(done, done);
+                  });
+
+                });
+              });
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('---');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
         it(suiteName + "executeSql parameter as array", function(done) {
           var db = openDatabase("array-parameter.db", "1.0", "Demo", DEFAULT_SIZE);
 
@@ -807,8 +920,8 @@ var mytests = function() {
           });
         }, MYTIMEOUT);
 
-        it(suiteName + "executeSql parameter as 'boolean' true/false values (apparently stringified)", function(done) {
-          var db = openDatabase("array-parameter.db", "1.0", "Demo", DEFAULT_SIZE);
+        it(suiteName + "INSERT with as 'boolean' true/false argument values [evidently stringified]", function(done) {
+          var db = openDatabase('INSERT-true-false-parameter-value-bindings-test.db');
 
           db.transaction(function(tx) {
             tx.executeSql('DROP TABLE IF EXISTS test_table');
@@ -838,6 +951,88 @@ var mytests = function() {
             (isWebSql) ? done() : db.close(done, done);
           });
         }, MYTIMEOUT);
+
+      });
+
+      describe(suiteName + 'numbered argument parameters storage tests', function() {
+
+        it(suiteName + 'INSERT with numbered argument parameters', function(done) {
+          var db = openDatabase('INSERT-with-numbered-argument-parameters-test.db');
+
+          db.transaction(function(tx) {
+            tx.executeSql('DROP TABLE IF EXISTS MyTable');
+            // create columns with no type affinity
+            tx.executeSql('CREATE TABLE IF NOT EXISTS MyTable (id integer primary key, data1, data2)', null, function(ignored1, ignored2) {
+
+              tx.executeSql("INSERT INTO MyTable (data1, data2) VALUES (?1,?2)", ['a', 1], function(tx, rs1) {
+                expect(rs1).toBeDefined();
+                expect(rs1.rowsAffected).toBe(1);
+
+                tx.executeSql("SELECT * FROM MyTable", [], function(tx_ignored, rs2) {
+                  expect(rs2).toBeDefined();
+                  expect(rs2.rows).toBeDefined();
+                  expect(rs2.rows.length).toBe(1);
+
+                  var resultRow2 = rs2.rows.item(0);
+                  expect(resultRow2).toBeDefined();
+                  expect(resultRow2.id).toBe(1);
+                  expect(resultRow2.data1).toBe('a');
+                  expect(resultRow2.data2).toBe(1);
+
+                  // Close (plugin only) & finish:
+                  (isWebSql) ? done() : db.close(done, done);
+                });
+              });
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('---');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
+        it(suiteName + 'INSERT with numbered argument parameters reversed', function(done) {
+          var db = openDatabase('INSERT-with-numbered-argument-parameters-reversed-test.db');
+
+          db.transaction(function(tx) {
+            tx.executeSql('DROP TABLE IF EXISTS MyTable');
+            // create columns with no type affinity
+            tx.executeSql('CREATE TABLE IF NOT EXISTS MyTable (id integer primary key, data1, data2)', null, function(ignored1, ignored2) {
+
+              tx.executeSql("INSERT INTO MyTable (data1, data2) VALUES (?2,?1)", ['a', 1], function(tx, rs1) {
+                expect(rs1).toBeDefined();
+                expect(rs1.rowsAffected).toBe(1);
+
+                tx.executeSql("SELECT * FROM MyTable", [], function(tx_ignored, rs2) {
+                  expect(rs2).toBeDefined();
+                  expect(rs2.rows).toBeDefined();
+                  expect(rs2.rows.length).toBe(1);
+
+                  var resultRow2 = rs2.rows.item(0);
+                  expect(resultRow2).toBeDefined();
+                  expect(resultRow2.id).toBe(1);
+                  expect(resultRow2.data1).toBe(1);
+                  expect(resultRow2.data2).toBe('a');
+
+                  // Close (plugin only) & finish:
+                  (isWebSql) ? done() : db.close(done, done);
+                });
+              });
+            });
+          }, function(error) {
+            // NOT EXPECTED:
+            expect(false).toBe(true);
+            expect(error.message).toBe('---');
+            // Close (plugin only) & finish:
+            (isWebSql) ? done() : db.close(done, done);
+          });
+        }, MYTIMEOUT);
+
+      });
+
+      describe(suiteName + 'INLINE BLOB value storage tests', function() {
 
         it(suiteName + "INSERT inline BLOB value (X'40414243') and check stored data [TBD SELECT BLOB value ERROR EXPECTED on Windows, WP8, and Android with androidDatabaseImplementation: 2 setting; with default sqlite HEX encoding: UTF-6le on Android 4.1-4.3 (WebKit) Web SQL, UTF-8 otherwise]", function(done) {
           var db = openDatabase('INSERT-inline-BLOB-value-40414243-and-check-stored-data.db');
@@ -1320,6 +1515,7 @@ var mytests = function() {
         it(suiteName + ' returns [Unicode] string with \\u0000 (same as \\0) correctly [TRUNCATION BUG on iOS (WebKit) Web SQL, older versions of Android (WebKit) Web SQL, and Windows plugin]', function (done) {
           if (isWP8) pending('BROKEN on WP(8)'); // [BUG #202] UNICODE characters not working with WP(8)
           if (isWebSql && /Android 5.1/.test(navigator.userAgent)) pending('SKIP on (WebKit) Web SQL on Android 5.1'); // XXX TBD INCONSISTENT RESULT on (WebKit) Web SQL on Android 5.1(.1) x86 emulator vs Samsung test device
+          if (isWebSql && /Android 6/.test(navigator.userAgent)) pending('SKIP on (WebKit) Web SQL on Android 6'); // XXX TBD
 
           var db = openDatabase('UNICODE-retrieve-u0000-test.db');
 

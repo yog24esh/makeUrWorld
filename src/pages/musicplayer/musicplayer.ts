@@ -1,25 +1,97 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NativeAudio } from '@ionic-native/native-audio'
+import { IonicPage, NavController, NavParams } from 'ionic-angular'; 
+import { StreamingMedia,StreamingAudioOptions } from '../../../node_modules/@ionic-native/streaming-media';
+//import { StreamingMedia, StreamingAudioOptions } from '@ionic-native/streaming-media';
+import { Media, MediaObject } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
+
+ 
 @IonicPage()
 @Component({
   selector: 'page-musicplayer',
   templateUrl: 'musicplayer.html',
 })
 export class MusicplayerPage {
+  songs = ['http://media.makeurworld.com/store/music_p/35541602555a4691e3d230f.mp3'];
+  poster = [];
+  file1:MediaObject;
+  play:boolean=false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private nativeAudio:NativeAudio) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private streamingMedia:StreamingMedia,private media: Media,private file:File) {
+    
+   
+    // this.file1.play();
+
+// pause the file
+
+
+ 
   }
+  
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad MusicplayerPage');
+    this.file1= this.media.create(this.songs[0]);
+    console.log(this.file1);
+   
+    this.file1.onStatusUpdate.subscribe(status => {
+     
+        if(status==1)
+        {
+          this.duration();
+          let duration = this.file1.getDuration();
+          console.log(duration);
+        }
+        if(status==2)
+        {
+          this.play=true;
+        }
+        if(status==3){
+          this.play=false;
+        }
+        console.log(this.play);
+    }); // fires when file status changes
+    this.file1.onSuccess.subscribe(() => console.log('Play next song'));
+    this.file1.onError.subscribe(error => console.log('Error!', error));  
   }
-  songPlay(){
-  this.nativeAudio.preloadComplex('uniqueId2', 'https://r5---sn-p5qlsndd.googlevideo.com/videoplayback?clen=4472652&sparams=clen,dur,ei,expire,gir,id,ip,ipbits,ipbypass,itag,keepalive,lmt,mime,mip,mm,mn,ms,mv,pl,requiressl,source&c=WEB&ipbits=0&ei=c8NGW_jPKo_AkAOhoKWADA&pl=27&ip=104.156.245.194&keepalive=yes&id=o-ALtLIALoVg1mX_g3kwuJbZ5DY-sE910ZphYdzCHuKTEm&mime=audio%2Fmp4&itag=140&expire=1531385811&fvip=5&lmt=1523417018167625&dur=281.565&source=youtube&requiressl=yes&key=cms1&gir=yes&fexp=23709359,23745105&signature=64C3460947AF62FC1DF9E7DAAA22D44BA7E7E775.52FD58D9C56B18E973F7413A63CF649E79B6834D&ratebypass=yes&title=Luis+Fonsi+-+Despacito+ft.+Daddy+Yankee&title=Luis+Fonsi+-+Despacito+ft.+Daddy+Yankee&mip=207.244.77.49&redirect_counter=1&rm=sn-p5qe7e7e&req_id=822d28ae1318a3ee&cms_redirect=yes&ipbypass=yes&mm=31&mn=sn-p5qlsndd&ms=au&mt=1531378737&mv=m', 1, 1, 0).then(()=>{
-    console.log("audio played")
-  },
-  (err)=>{
-    console.log(err);
-  });
-  this.nativeAudio.play('uniqueId2', () => console.log('uniqueId1 is done playing'));
-}
+
+ 
+
+  playSong(){
+      // this.file1.onStatusUpdate.subscribe(status => console.log(status));
+      // console.log(this.play);
+      this.file1.play();
+      this.play=false;
+  }
+
+  pauseSong()
+  {
+    // console.log(this.play);
+    this.file1.pause();
+    this.play=true;
+  }
+
+  duration(){
+
+    // console.log(5);
+    setTimeout(function(){
+     
+      console.log(15);
+      this.duration();
+
+    },500);
+
+  }
+
+
+  // pre(){
+
+  //   this.file1.play();
+  //   // console.log(15);
+
+  // }
+
+  
+
+
 }

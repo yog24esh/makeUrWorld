@@ -6,7 +6,7 @@ Native SQLite component with API based on HTML5/[Web SQL (DRAFT) API](http://www
 - macOS ("osx" platform)
 - Windows 10 (UWP) DESKTOP and MOBILE (see below for major limitations)
 
-Browser platform is supported as described in [Browser platform usage notes](#browser-platform-usage-notes) section below.
+Browser platform is currently supported with some limitations as described in [browser platform usage notes](#browser-platform-usage-notes) section below, will be supported with more features such as numbered parameters in upcoming major release for July 2018 (see below).
 
 **LICENSE:** MIT, with Apache 2.0 option for Android and Windows platforms (see [LICENSE.md](./LICENSE.md) for details, including third-party components used by this plugin)
 
@@ -19,22 +19,14 @@ with possible corruption risk in case of sqlite access from multiple plugins (se
 New release in July 2018 will include the following major enhancements ([litehelpers/Cordova-sqlite-storage#773](https://github.com/litehelpers/Cordova-sqlite-storage/issues/773)):
 
 - browser platform support using [kripken / sql.js](https://github.com/kripken/sql.js) ([litehelpers/Cordova-sqlite-storage#576](https://github.com/litehelpers/Cordova-sqlite-storage/pull/576))
-- cordova-sqlite-storage and cordova-sqlite-ext will be combined together, no more separate plugin version needed for pre-populated databases ([litehelpers/Cordova-sqlite-storage#529](https://github.com/litehelpers/Cordova-sqlite-storage/issues/529))
+- `cordova-sqlite-storage` and `cordova-sqlite-ext` plugin versions will be combined, no more separate plugin version needed for pre-populated databases ([litehelpers/Cordova-sqlite-storage#529](https://github.com/litehelpers/Cordova-sqlite-storage/issues/529))
 - include typings from DefinitelyTyped ([litehelpers/Cordova-sqlite-storage#768](https://github.com/litehelpers/Cordova-sqlite-storage/pull/768))
 
 **BREAKING CHANGES expected:**
 
-- drop support for Android pre-5.0 ([litehelpers/Cordova-sqlite-storage#771](https://github.com/litehelpers/Cordova-sqlite-storage/issues/771)); feedback is requested in case of interest in support for Android 4.4, 4.3, 4.2, or 4.1
+- drop support for Android pre-4.4 (Android 4.4 with old `armeabi` CPU to be deprecatd with limited updates in the future) ref: [litehelpers/Cordova-sqlite-storage#771](https://github.com/litehelpers/Cordova-sqlite-storage/issues/771)
 - drop support for iOS 8.x (was already dropped by cordova-ios@4.4.0)
-- ~~drop Android NDK build for x86_64 ([litehelpers/Cordova-sqlite-storage#772](https://github.com/litehelpers/Cordova-sqlite-storage/issues/772)); NDK build for x86 will still work on x86_64 if no other plugins have NDK build for x86_64; feedback is requested in case of interest in NDK build for x86_64~~
 - drop support for location: 0-2 values in openDatabase call (please use `location: 'default'` or `iosDatabaseLocation` setting in openDatabase as documented below)
-
-## Browser platform usage notes
-
-As stated above the browser platform will be supported using [kripken / sql.js](https://github.com/kripken/sql.js) (see [litehelpers/Cordova-sqlite-storage#576](https://github.com/litehelpers/Cordova-sqlite-storage/pull/576)) in the near future. Alternative solutions for now:
-
-- Use [brodybits / sql-promise-helper](https://github.com/brodybits/sql-promise-helper) as described in [brodybits/sql-promise-helper#4](https://github.com/brodybits/sql-promise-helper/issues/4)
-- Mocking on Ionic Native is possible as described in <https://www.techiediaries.com/mocking-native-sqlite-plugin/> and <https://medium.com/@tintin301/ionic-sqlite-storage-setting-up-for-browser-development-and-testing-67c0f17fc7af>
 
 ## About this plugin version
 
@@ -42,13 +34,13 @@ This is the common plugin version which supports the most widely used features a
 
 This version branch uses a `before_plugin_install` hook to install sqlite3 library dependencies from `cordova-sqlite-storage-dependencies` via npm.
 
-<!-- XXX TBD NOT WORKING:
+<!-- XXX TBD WORKING CI WANTED in the future:
 |Android Circle-CI (**full** suite)|iOS Travis-CI (partial suite)|
 |-----------------------|----------------------|
 |[![Circle CI](https://circleci.com/gh/litehelpers/Cordova-sqlite-storage.svg?style=svg)](https://circleci.com/gh/litehelpers/Cordova-sqlite-storage)|[![Build Status](https://travis-ci.org/litehelpers/Cordova-sqlite-storage.svg)](https://travis-ci.org/litehelpers/Cordova-sqlite-storage)|
  -->
 
-<!-- FUTURE TBD critial bug notices for this version branch -->
+<!-- FUTURE TBD critical bug notices for this plugin version -->
 
 <!-- END About this plugin version branch -->
 
@@ -128,7 +120,21 @@ To populate a database using the DRAFT standard transaction API:
   });
 ```
 
-To check the data using the "standard" (deprecated) transaction API:
+or using numbered parameters as documented in <https://www.sqlite.org/c3ref/bind_blob.html>:
+
+```Javascript
+  db.transaction(function(tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
+    tx.executeSql('INSERT INTO DemoTable VALUES (?1,?2)', ['Alice', 101]);
+    tx.executeSql('INSERT INTO DemoTable VALUES (?1,?2)', ['Betty', 202]);
+  }, function(error) {
+    console.log('Transaction ERROR: ' + error.message);
+  }, function() {
+    console.log('Populated database OK');
+  });
+```
+
+To check the data using the DRAFT standard transaction API:
 
 ```Javascript
   db.transaction(function(tx) {
@@ -140,7 +146,9 @@ To check the data using the "standard" (deprecated) transaction API:
   });
 ```
 
-### Using recommended API calls
+### Using plugin-specific API calls
+
+NOTE: These samples will NOT work alternative 3 for browser platform support discussed in [browser platform usage notes](#browser-platform-usage-notes).
 
 To populate a database using the SQL batch API:
 
@@ -149,6 +157,20 @@ To populate a database using the SQL batch API:
     'CREATE TABLE IF NOT EXISTS DemoTable (name, score)',
     [ 'INSERT INTO DemoTable VALUES (?,?)', ['Alice', 101] ],
     [ 'INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202] ],
+  ], function() {
+    console.log('Populated database OK');
+  }, function(error) {
+    console.log('SQL batch ERROR: ' + error.message);
+  });
+```
+
+or using numbered parameters as documented in <https://www.sqlite.org/c3ref/bind_blob.html>:
+
+```Javascript
+  db.sqlBatch([
+    'CREATE TABLE IF NOT EXISTS DemoTable (name, score)',
+    [ 'INSERT INTO DemoTable VALUES (?1,?2)', ['Alice', 101] ],
+    [ 'INSERT INTO DemoTable VALUES (?1,?2)', ['Betty', 202] ],
   ], function() {
     console.log('Populated database OK');
   }, function(error) {
@@ -166,6 +188,8 @@ To check the data using the single SQL statement API:
   });
 ```
 
+### More detailed sample
+
 See the [Sample section](#sample) for a sample with a more detailed explanation (using the DRAFT standard transaction API).
 
 <!-- END quick tour -->
@@ -175,7 +199,7 @@ See the [Sample section](#sample) for a sample with a more detailed explanation 
 - This plugin is NOT supported by PhoneGap Developer App or PhoneGap Desktop App.
 - A recent version of the Cordova CLI (such as `6.5.0` / `7.1.0` / `8.0.0`) is recommended. Cordova versions older than `6.0.0` are missing the `cordova-ios@4.0.0` security fixes. In addition it may be needed to use `cordova prepare` in case of cordova-ios older than `4.3.0` (Cordova CLI `6.4.0`).
 - This plugin version uses a `before_plugin_install` hook to install sqlite3 library dependencies from `cordova-sqlite-storage-dependencies` via npm.
-- Use of other systems such as Cordova Plugman, PhoneGap CLI, PhoneGap Build, and Intel XDK is no longer supported by this plugin version since they do not honor the `before_plugin_install` hook. The supported solution is to use [litehelpers / Cordova-sqlite-evcore-extbuild-free](https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free) (GPL or commercial license terms); alternative with permissive license terms is available at: [brodybits / cordova-sqlite-legacy-build-support](https://github.com/brodybits/cordova-sqlite-legacy-build-support) (limited testing, limited updates).
+- Use of other systems such as Cordova Plugman, PhoneGap CLI, PhoneGap Build, and Intel XDK is no longer supported by this plugin version since they do not honor the `before_plugin_install` hook. The supported solution is to use [litehelpers / Cordova-sqlite-evcore-extbuild-free](https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free) (GPL or commercial license terms); deprecated alternative with permissive license terms is available at: [brodybits / cordova-sqlite-legacy-build-support](https://github.com/brodybits/cordova-sqlite-legacy-build-support) (very limited testing, very limited updates).
 - SQLite `3.22.0` included when building (all platforms), with the following compile-time definitions:
   - `SQLITE_THREADSAFE=1`
   - `SQLITE_DEFAULT_SYNCHRONOUS=3` (EXTRA DURABLE build setting) ref: [litehelpers/Cordova-sqlite-storage#736](https://github.com/litehelpers/Cordova-sqlite-storage/issues/736)
@@ -197,7 +221,7 @@ See the [Sample section](#sample) for a sample with a more detailed explanation 
 - This version branch supports the use of two (2) possible Android sqlite database implementations:
   - default: lightweight [Android-sqlite-connector](https://github.com/liteglue/Android-sqlite-connector), using SQLite3 NDK component built from [brodybits / Android-sqlite-ext-native-driver (sqlite-storage-native-driver branch)](https://github.com/brodybits/Android-sqlite-ext-native-driver/tree/sqlite-storage-native-driver)
   - optional: built-in Android database classes (usage described below)
-- Support for WP8 along with Windows 8.1/Windows Phone 8.1/Windows 10 using Visual Studio 2015 is available in: [litehelpers / Cordova-sqlite-legacy-build-support](https://github.com/litehelpers/Cordova-sqlite-legacy-build-support)
+- Support for WP8 along with Windows 8.1/Windows Phone 8.1/Windows 10 using Visual Studio 2015 is available in: [brodybits / cordova-sqlite-legacy-build-support](https://github.com/brodybits/cordova-sqlite-legacy-build-support)
 - The following features are available in [litehelpers / cordova-sqlite-ext](https://github.com/litehelpers/cordova-sqlite-ext):
   - REGEXP (Android/iOS/macOS)
   - SELECT BLOB data in Base64 format (all platforms Android/iOS/macOS/Windows)
@@ -215,7 +239,7 @@ See the [Sample section](#sample) for a sample with a more detailed explanation 
   - Known issue with database names that contain certain US-ASCII punctuation and control characters (see below)
 - The macOS platform version ("osx" platform) is not tested in a release build and should be considered pre-alpha.
 - Android versions supported: 2.3.3 - 8.1, P (API levels 10 - 27, P), depending on Cordova version ref: <https://cordova.apache.org/docs/en/latest/guide/platforms/android/>
-- iOS versions supported: 8.x / 9.x / 10.x / 11.x (see [deviations section](#deviations) below for differences in case of WKWebView)
+- iOS versions supported: 8.x / 9.x / 10.x / 11.x, see [deviations section](#deviations) below for differences in case of WKWebView (using cordova-plugin-wkwebview-engine)
 - FTS3, FTS4, and R-Tree are fully tested and supported for all target platforms in this version branch.
 - Default `PRAGMA journal_mode` setting (*tested*):
   - Android with builtin android.database implementation (as selected using the `androidDatabaseImplementation` option in `window.sqlitePlugin.openDatabase`): `persist` (pre-8.0) / `truncate` (Android 8.0, 8.1) / `wal` (Android P)
@@ -247,7 +271,7 @@ See the [Sample section](#sample) for a sample with a more detailed explanation 
 - Self-test functions to verify proper installation and operation of this plugin
 - More explicit `openDatabase` and `deleteDatabase` `iosDatabaseLocation` option
 - Added straightforward sql batch function
-- [MetaMemoryT / websql-promise](https://github.com/MetaMemoryT/websql-promise) now provides a Promises-based interface to both Web SQL and this plugin
+- [MetaMemoryT / websql-promise](https://github.com/MetaMemoryT/websql-promise) now provides a Promises-based interface to both (WebKit) Web SQL and this plugin
 - [SQLCipher](https://www.zetetic.net/sqlcipher/) for Android/iOS/macOS/Windows is supported by [litehelpers / Cordova-sqlcipher-adapter](https://github.com/litehelpers/Cordova-sqlcipher-adapter)
 
 <!-- END Announcements -->
@@ -297,6 +321,37 @@ In addition, this guide assumes a basic knowledge of some key JavaScript concept
 - In general it is *not* recommended to commit the `platforms` subdirectory tree into the source repository.
 
 **NOTICE:** This plugin is only supported with the Cordova CLI. This plugin is *not* supported with other Cordova/PhoneGap systems such as PhoneGap CLI, PhoneGap Build, Plugman, Intel XDK, Webstorm, etc.
+
+## Browser platform usage notes
+
+As stated above the browser platform will supported with features such as numbered parameters using [kripken / sql.js](https://github.com/kripken/sql.js) (see [litehelpers/Cordova-sqlite-storage#576](https://github.com/litehelpers/Cordova-sqlite-storage/pull/576)) in the near future. Alternative solutions for now, with features such as numbered paramters (`?1`, `?2`, etc.) missing:
+
+1. Use [brodybits / sql-promise-helper](https://github.com/brodybits/sql-promise-helper) as described in [brodybits/sql-promise-helper#4](https://github.com/brodybits/sql-promise-helper/issues/4)
+2. Mocking on Ionic Native is possible as described in <https://www.techiediaries.com/mocking-native-sqlite-plugin/> and <https://medium.com/@tintin301/ionic-sqlite-storage-setting-up-for-browser-development-and-testing-67c0f17fc7af>
+3. Open the database as follows:
+
+```js
+if (window.cordova.platformId === 'browser') db = window.openDatabase('MyDatabase', '1.0', 'Data', 2*1024*1024);
+else db = window.sqlitePlugin.openDatabase({name: 'MyDatabase.db', location: 'default'});
+```
+
+or more compactly:
+
+```js
+db = (window.cordova.platformId === 'browser') ?
+  window.openDatabase('MyDatabase', '1.0', 'Data', 2*1024*1024) :
+  window.sqlitePlugin.openDatabase({name: 'MyDatabase.db', location: 'default'});
+```
+
+(lower limit needed to avoid extra permission request popup on Safari)
+
+and limit database access to DRAFT standard transactions, no plugin-specific API calls:
+- no `executeSql` calls outside DRAFT standard transactions
+- no `sqlBatch` calls
+- no `echoTest` or `selfTest` possible
+- no `deleteDatabase` calls
+
+It would be ideal for the application code to abstract the openDatabase part away from the rest of the database access code.
 
 ### Windows platform notes
 
@@ -401,18 +456,19 @@ The new [brodybits / cordova-sqlite-test-app](https://github.com/brodybits/cordo
 
 In case you get stuck with something please read through the [support](#support) section and follow the instructions before raising an issue. Professional support is also available by contacting: <sales@litehelpers.net>
 
-### Plugin usage examples
+### Plugin usage examples and tutorials
+
+**Simple example:**
 
 - [brodybits / cordova-sqlite-storage-starter-app](https://github.com/brodybits/cordova-sqlite-storage-starter-app) (using `cordova-sqlite-storage` plugin version)
-- <http://stackoverflow.com/questions/26604952/a-simple-cordova-android-example-including-sqlite-read-write-and-search> (also using `cordova-sqlite-storage` plugin version)
 
-### Plugin tutorials
+**Tutorials:**
 
-- <https://phonegappro.com/tutorials/phonegap-sqlite-tutorial-with-example-apache-cordova/> (using `cordova-sqlite-storage` plugin version)
+- <https://codesundar.com/cordova-sqlite-storage/> (using `cordova-sqlite-storage` plugin version with JQuery)
 
-**NOTICE:** The above tutorial shows `cordova plugin add cordova-sqlite-storage` with the `--save` flag missing, needed in case of Cordova CLI pre-7.0 to keep the plugins in `config.xml` (automatic starting with Cordova CLI 7.0).
+**PITFALL WARNING:** A number of tutorials show up in search results that use Web SQL database instead of this plugin.
 
-Other plugin tutorials wanted ref: [litehelpers/Cordova-sqlite-storage#609](https://github.com/litehelpers/Cordova-sqlite-storage/issues/609)
+WANTED: simple, working CRUD tutorial sample ref: [litehelpers / Cordova-sqlite-storage#795](https://github.com/litehelpers/Cordova-sqlite-storage/issues/795)
 
 ### SQLite resources
 
@@ -481,7 +537,7 @@ As "strongly recommended" by [Web SQL Database API 8.5 SQL injection](https://ww
 - In case of an issue that causes an API function to throw an exception (Android/iOS WebKit) Web SQL includes includes a code member with value of 0 (SQLError.UNKNOWN_ERR) in the exception while the plugin includes no such code member.
 - This plugin supports some non-standard features as documented below.
 - Results of SELECT with BLOB data such as `SELECT LOWER(X'40414243') AS myresult`, `SELECT X'40414243' AS myresult`, or reading data stored by `INSERT INTO MyTable VALUES (X'40414243')` are not consistent on Android in case the built-in Android database is used (using the `androidDatabaseImplementation: 2` setting in `window.sqlitePlugin.openDatabase`) or Windows. (These work with Android/iOS WebKit Web SQL and have been supported by SQLite for a number of years.)
-- Whole number parameter argument values such as `42`, `-101`, or `1234567890123` are handled as INTEGER values by this plugin on Android, iOS (default UIWebView), and Windows while they are handled as REAL values by (WebKit) Web SQL and this plugin on macOS or iOS with WKWebView. This is evident in certain test operations such as `SELECT ? as myresult` or `SELECT TYPEOF(?) as myresult` and storage in a field with TEXT affinity.
+- Whole number parameter argument values such as `42`, `-101`, or `1234567890123` are handled as INTEGER values by this plugin on Android, iOS (default UIWebView), and Windows while they are handled as REAL values by (WebKit) Web SQL and by this plugin on iOS with WKWebView (using cordova-plugin-wkwebview-engine) or macOS ("osx"). This is evident in certain test operations such as `SELECT ? as myresult` or `SELECT TYPEOF(?) as myresult` and storage in a field with TEXT affinity.
 - INTEGER, REAL, +/- `Infinity`, `NaN`, `null`, `undefined` parameter argument values are handled as TEXT string values on Android in case the built-in Android database (`androidDatabaseImplementation: 2` setting) is used. (This is evident in certain test operations such as `SELECT ? as myresult` or `SELECT TYPEOF(?) as myresult` and storage in a field with TEXT affinity.)
 - In case of invalid transaction callback arguments such as string values the plugin attempts to execute the transaction while (WebKit) Web SQL would throw an exception.
 - The plugin handles invalid SQL arguments array values such as `false`, `true`, or a string as if there were no arguments while (WebKit) Web SQL would throw an exception. NOTE: In case of a function in place of the SQL arguments array WebKit Web SQL would report a transaction error while the plugin would simply ignore the function.
@@ -490,6 +546,7 @@ As "strongly recommended" by [Web SQL Database API 8.5 SQL injection](https://ww
 - In certain cases such as `transaction.executeSql()` with no arguments (Android/iOS WebKit) Web SQL includes includes a code member with value of 0 (SQLError.UNKNOWN_ERR) in the exception while the plugin includes no such code member.
 - If the SQL arguments are passed in an `Array` subclass object where the `constructor` does not point to `Array` then the SQL arguments are ignored by the plugin.
 - The results data objects are not immutable as specified/implied by [Web SQL (DRAFT) API section 4.5](https://www.w3.org/TR/webdatabase/#database-query-results).
+- This plugin supports use of numbered parameters (`?1`, `?2`, etc.) as documented in <https://www.sqlite.org/c3ref/bind_blob.html>, not supported by HTML5/[Web SQL (DRAFT) API](http://www.w3.org/TR/webdatabase/) ref: [Web SQL (DRAFT) API section 4.2](https://www.w3.org/TR/webdatabase/#parsing-and-processing-sql-statements).
 
 ### Security of deleted data
 
@@ -577,6 +634,7 @@ Additional limitations are tracked in [marked Cordova-sqlite-storage doc-todo is
 - Extremely large and small INTEGER and REAL values ref: [litehelpers/Cordova-sqlite-storage#627](https://github.com/litehelpers/Cordova-sqlite-storage/issues/627)
 - More emojis and other 4-octet UTF-8 characters
 - More database file names with some more control characters and multi-byte UTF-8 characters (including emojis and other 4-byte UTF-8 characters)
+- Use of numbered parameters (`?1`, `?2`, etc.) as documented in <https://www.sqlite.org/c3ref/bind_blob.html>
 - Use of `?NNN`/`:AAA`/`@AAAA`/`$AAAA` parameter placeholders as documented in <https://www.sqlite.org/lang_expr.html#varparam> and <https://www.sqlite.org/c3ref/bind_blob.html>) (currently NOT supported by this plugin) ref: [litehelpers/Cordova-sqlite-storage#717](https://github.com/litehelpers/Cordova-sqlite-storage/issues/717)
 - Single-statement and SQL batch transaction calls with invalid arguments (TBD behavior subject to change)
 - Plugin vs (WebKit) Web SQL transaction behavior in case of an error handler which returns various falsy vs truthy values
@@ -586,16 +644,25 @@ Additional limitations are tracked in [marked Cordova-sqlite-storage doc-todo is
 
 ## Some tips and tricks
 
-- If you run into problems and your code follows the asynchronous HTML5/[Web SQL](http://www.w3.org/TR/webdatabase/) transaction API, you can try opening a test database using `window.openDatabase` and see if you get the same problems.
+- In case of issues with code that follows the asynchronous Web SQL transaction API, it is possible to test with a test database using `window.openDatabase` for comparison with (WebKit) Web SQL.
 - In case your database schema may change, it is recommended to keep a table with one row and one column to keep track of your own schema version number. It is possible to add it later. The recommended schema update procedure is described below.
 
 <!-- END Some tips and tricks -->
 
 ## Pitfalls
 
-### Some common pitfall(s)
+### Extremely common pitfall(s)
+
+IMPORTANT: A number of tutorials and samples in search results suffer from the following pitfall:
 
 - If a database is opened using the standard `window.openDatabase` call it will not have any of the benefits of this plugin and features such as the `sqlBatch` call would not be available.
+
+### Common update pitfall(s)
+
+- Updates such as database schema changes, migrations from use of Web SQL, migration between data storage formats must be handled with extreme care. It is generally extremely difficult or impossible to predict when users will install application updates. Upgrades from old database schemas and formats must be supported for a very long time.
+
+### Other common pitfall(s)
+
 - It is NOT allowed to execute sql statements on a transaction that has already finished, as described below. This is consistent with the HTML5/[Web SQL (DRAFT) API](http://www.w3.org/TR/webdatabase/).
 - The plugin class name starts with "SQL" in capital letters, but in Javascript the `sqlitePlugin` object name starts with "sql" in small letters.
 - Attempting to open a database before receiving the 'deviceready' event callback.
@@ -618,7 +685,7 @@ Additional limitations are tracked in [marked Cordova-sqlite-storage doc-todo is
 - This plugin does **not** work with the default "Any CPU" target. A specific, valid CPU target platform **must** be specified.
 - It is **not** allowed to change the app ID in the Windows platform project. As described in the **Windows platform usage** of the [Installing](#installing) section a Windows-specific app ID may be declared using the `windows-identity-name` attribute or "WindowsStoreIdentityName" setting.
 - A problem locating `SQLite3.md` generally means that there was a problem building the C++ library.
-- Visual Studio 2015 is no longer supported by this version. Visual Studio 2015 is now supported by [litehelpers / Cordova-sqlite-legacy-build-support](https://github.com/litehelpers/Cordova-sqlite-legacy-build-support).
+- Visual Studio 2015 is no longer supported by this plugin version. Visual Studio 2015 is now supported by [litehelpers / cordova-sqlite-legacy](https://github.com/litehelpers/cordova-sqlite-legacy) (for Windows 8.1, Windows Phone 8.1, and Windows 10 builds).
 
 ### General Cordova pitfalls
 
@@ -650,7 +717,6 @@ FUTURE TBD: Proper date/time handling will be further tested and documented at s
 ## Major TODOs
 
 - More formal documentation of API, especially for non-standard functions
-- Browser platform
 - IndexedDBShim adapter (possibly based on IndexedDBShim)
 - Further cleanup of [support](#support) section
 - Resolve or document remaining [open Cordova-sqlite-storage bugs](https://github.com/litehelpers/Cordova-sqlite-storage/issues?q=is%3Aissue+is%3Aopen+label%3Abug-general)
@@ -769,7 +835,7 @@ where the `iosDatabaseLocation` option may be set to one of the following choice
 
 **WARNING:** Again, the new "default" iosDatabaseLocation value is *NOT* the same as the old default location and would break an upgrade for an app using the old default value (0) on iOS.
 
-*ALTERNATIVE (deprecated):*
+DEPRECATED ALTERNATIVE to be removed in July 2018:
 - `var db = window.sqlitePlugin.openDatabase({name: "my.db", location: 1}, successcb, errorcb);`
 
 with the `location` option set to one the following choices (affects iOS *only*):
@@ -916,10 +982,23 @@ The following types of SQL transactions are supported by this plugin version:
 
 ### Single-statement transactions
 
+NOTE: This call will NOT work alternative 3 for browser platform support discussed in [browser platform usage notes](#browser-platform-usage-notes).
+
 Sample with INSERT:
 
 ```Javascript
 db.executeSql('INSERT INTO MyTable VALUES (?)', ['test-value'], function (resultSet) {
+  console.log('resultSet.insertId: ' + resultSet.insertId);
+  console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+}, function(error) {
+  console.log('SELECT error: ' + error.message);
+});
+```
+
+or using numbered parameters as documented in <https://www.sqlite.org/c3ref/bind_blob.html>:
+
+```Javascript
+db.executeSql('INSERT INTO MyTable VALUES (?1)', ['test-value'], function (resultSet) {
   console.log('resultSet.insertId: ' + resultSet.insertId);
   console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
 }, function(error) {
@@ -952,6 +1031,8 @@ db.executeSql("SELECT UPPER('First') AS uppertext", [], function (resultSet) {
 
 ### SQL batch transactions
 
+NOTE: This call will NOT work alternative 3 for browser platform support discussed in [browser platform usage notes](#browser-platform-usage-notes).
+
 Sample:
 
 ```Javascript
@@ -963,6 +1044,20 @@ db.sqlBatch([
   db.executeSql('SELECT * FROM MyTable', [], function (resultSet) {
     console.log('Sample column value: ' + resultSet.rows.item(0).SampleColumn);
   });
+}, function(error) {
+  console.log('Populate table error: ' + error.message);
+});
+```
+
+or using numbered parameters as documented in <https://www.sqlite.org/c3ref/bind_blob.html>:
+
+```Javascript
+db.sqlBatch([
+  'CREATE TABLE MyTable IF NOT EXISTS (name STRING, balance INTEGER)',
+  [ 'INSERT INTO MyTable VALUES (?1,?2)', ['Alice', 100] ],
+  [ 'INSERT INTO MyTable VALUES (?1,?2)', ['Betty', 200] ],
+], function() {
+  console.log('MyTable is now populated.');
 }, function(error) {
   console.log('Populate table error: ' + error.message);
 });
@@ -981,6 +1076,25 @@ db.transaction(function(tx) {
   tx.executeSql('DROP TABLE IF EXISTS MyTable');
   tx.executeSql('CREATE TABLE MyTable (SampleColumn)');
   tx.executeSql('INSERT INTO MyTable VALUES (?)', ['test-value'], function(tx, resultSet) {
+    console.log('resultSet.insertId: ' + resultSet.insertId);
+    console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
+  }, function(tx, error) {
+    console.log('INSERT error: ' + error.message);
+  });
+}, function(error) {
+  console.log('transaction error: ' + error.message);
+}, function() {
+  console.log('transaction ok');
+});
+```
+
+or using numbered parameters as documented in <https://www.sqlite.org/c3ref/bind_blob.html>:
+
+```Javascript
+db.transaction(function(tx) {
+  tx.executeSql('DROP TABLE IF EXISTS MyTable');
+  tx.executeSql('CREATE TABLE MyTable (SampleColumn)');
+  tx.executeSql('INSERT INTO MyTable VALUES (?1)', ['test-value'], function(tx, resultSet) {
     console.log('resultSet.insertId: ' + resultSet.insertId);
     console.log('resultSet.rowsAffected: ' + resultSet.rowsAffected);
   }, function(tx, error) {
@@ -1660,7 +1774,7 @@ function closeDB() {
 - `src`: platform-specific source code
 - `node_modules`: placeholder for external dependencies
 - `scripts`: installation hook script to fetch the external dependencies via `npm`
-- `spec`: test suite using Jasmine (`2.4.1`)
+- `spec`: test suite using Jasmine (`2.5.2`)
 - `tests`: very simple Jasmine test suite that is run on Circle CI (Android platform) and Travis CI (iOS platform) (used as a placeholder)
 
 <!-- END Source tree -->
